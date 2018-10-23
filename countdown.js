@@ -1268,7 +1268,7 @@ function(module) {
 	 * @public
 	 * @param {Object} format settings object
 	 */
-	var setFormat = countdown.setFormat = function(format) {
+	var setFormat = function(format) {
 		if (!format) { return; }
 
 		if ('singular' in format || 'plural' in format) {
@@ -1304,12 +1304,13 @@ function(module) {
 			formatter = format.formatter;
 		}
 	};
+	countdown.setFormat = setFormat;
 
 	/**
 	 * Revert to the default formatting.
 	 * @public
 	 */
-	var resetFormat = countdown.resetFormat = function() {
+	var resetFormat = function() {
 		LABELS_SINGLUAR = ' millisecond| second| minute| hour| day| week| month| year| decade| century| millennium'.split('|');
 		LABELS_PLURAL = ' milliseconds| seconds| minutes| hours| days| weeks| months| years| decades| centuries| millennia'.split('|');
 		LABEL_LAST = ' and ';
@@ -1318,6 +1319,7 @@ function(module) {
 		formatNumber = function(value) { return value; };
 		formatter = plurality;
 	};
+	countdown.resetFormat = resetFormat;
 
 	/**
 	 * Override the unit labels.
